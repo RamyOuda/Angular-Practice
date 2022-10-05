@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { MessageService } from '../../messages/message.service';
 
@@ -7,21 +8,31 @@ import { ProductService } from '../product.service';
 
 @Component({
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  styleUrls: ['./product-edit.component.css'],
 })
-export class ProductEditComponent {
+export class ProductEditComponent implements OnInit {
   pageTitle = 'Product Edit';
   errorMessage = '';
 
   product: Product | null = null;
 
-  constructor(private productService: ProductService,
-    private messageService: MessageService) { }
+  constructor(
+    private productService: ProductService,
+    private messageService: MessageService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = Number(params.get('id'));
+      this.getProduct(id);
+    });
+  }
 
   getProduct(id: number): void {
     this.productService.getProduct(id).subscribe({
-      next: product => this.onProductRetrieved(product),
-      error: err => this.errorMessage = err
+      next: (product) => this.onProductRetrieved(product),
+      error: (err) => (this.errorMessage = err),
     });
   }
 
@@ -40,30 +51,37 @@ export class ProductEditComponent {
   }
 
   deleteProduct(): void {
-      if (!this.product || !this.product.id) {
-        // Don't delete, it was never saved.
-        this.onSaveComplete(`${this.product?.productName} was deleted`);
-      } else {
-        if (confirm(`Really delete the product: ${this.product.productName}?`)) {
-          this.productService.deleteProduct(this.product.id).subscribe({
-            next: () => this.onSaveComplete(`${this.product?.productName} was deleted`),
-            error: err => this.errorMessage = err
-          });
-        }
+    if (!this.product || !this.product.id) {
+      // Don't delete, it was never saved.
+      this.onSaveComplete(`${this.product?.productName} was deleted`);
+    } else {
+      if (confirm(`Really delete the product: ${this.product.productName}?`)) {
+        this.productService.deleteProduct(this.product.id).subscribe({
+          next: () =>
+            this.onSaveComplete(`${this.product?.productName} was deleted`),
+          error: (err) => (this.errorMessage = err),
+        });
       }
+    }
   }
 
   saveProduct(): void {
     if (this.product) {
       if (this.product.id === 0) {
         this.productService.createProduct(this.product).subscribe({
-          next: () => this.onSaveComplete(`The new ${this.product?.productName} was saved`),
-          error: err => this.errorMessage = err
+          next: () =>
+            this.onSaveComplete(
+              `The new ${this.product?.productName} was saved`
+            ),
+          error: (err) => (this.errorMessage = err),
         });
       } else {
         this.productService.updateProduct(this.product).subscribe({
-          next: () => this.onSaveComplete(`The updated ${this.product?.productName} was saved`),
-          error: err => this.errorMessage = err
+          next: () =>
+            this.onSaveComplete(
+              `The updated ${this.product?.productName} was saved`
+            ),
+          error: (err) => (this.errorMessage = err),
         });
       }
     } else {
