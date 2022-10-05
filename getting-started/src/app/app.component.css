@@ -1,0 +1,14 @@
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+.nav-link {
+  font-size: large;
+  transition: 200ms ease;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0059ff;
+}

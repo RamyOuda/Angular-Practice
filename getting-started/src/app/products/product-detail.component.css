@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 60%;
+}
+
+.row {
+  margin: 15px 0 15px 0;
+}
+
+.product-image {
+  width: 200px;
+}
+
+.btn {
+  width: 80px;
+}
