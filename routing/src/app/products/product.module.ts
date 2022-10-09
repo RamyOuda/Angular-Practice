@@ -16,12 +16,12 @@ import { ProductResolver } from './product.resolver';
       {
         path: 'products/:id',
         component: ProductDetailComponent,
-        resolve: { product: ProductResolver },
+        resolve: { resolvedData: ProductResolver },
       },
       {
         path: 'products/:id/edit',
         component: ProductEditComponent,
-        resolve: { product: ProductResolver },
+        resolve: { resolvedData: ProductResolver },
       },
     ]),
   ],
