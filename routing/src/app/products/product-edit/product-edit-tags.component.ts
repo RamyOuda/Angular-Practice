@@ -1,29 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Product } from '../product';
 
 @Component({
-  templateUrl: './product-edit-tags.component.html'
+  templateUrl: './product-edit-tags.component.html',
 })
 export class ProductEditTagsComponent implements OnInit {
+  @ViewChild(NgForm) productForm?: NgForm;
   errorMessage = '';
   newTags = '';
-  product = { id: 1, category: 'test', tags: ['test'] };
+  product!: Product;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.parent!.data.subscribe((data) => {
+      if (this.productForm) {
+        this.productForm.reset();
+      }
+      this.product = data['resolvedData'].product;
+    });
   }
 
   // Add the defined tags
   addTags(): void {
     if (this.product) {
       if (!this.newTags) {
-        this.errorMessage = 'Enter the search keywords separated by commas and then press Add';
+        this.errorMessage =
+          'Enter the search keywords separated by commas and then press Add';
       } else {
         const tagArray = this.newTags.split(',');
-        this.product.tags = this.product.tags ? this.product.tags.concat(tagArray) : tagArray;
+        this.product.tags = this.product.tags
+          ? this.product.tags.concat(tagArray)
+          : tagArray;
         this.newTags = '';
         this.errorMessage = '';
       }
