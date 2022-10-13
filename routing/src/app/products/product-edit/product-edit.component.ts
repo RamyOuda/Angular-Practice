@@ -14,7 +14,23 @@ export class ProductEditComponent implements OnInit {
   pageTitle = 'Product Edit';
   errorMessage = '';
 
-  product!: Product;
+  private currentProduct!: Product;
+  private originalProduct!: Product;
+
+  get product(): Product {
+    return this.currentProduct;
+  }
+  set product(value: Product) {
+    this.currentProduct = value;
+    this.originalProduct = { ...value };
+  }
+
+  get isDirty(): boolean {
+    return (
+      JSON.stringify(this.originalProduct) !==
+      JSON.stringify(this.currentProduct)
+    );
+  }
 
   constructor(
     private productService: ProductService,
