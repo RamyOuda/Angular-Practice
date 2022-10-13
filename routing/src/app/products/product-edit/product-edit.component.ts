@@ -15,7 +15,7 @@ export class ProductEditComponent implements OnInit {
   errorMessage = '';
 
   private currentProduct!: Product;
-  private originalProduct!: Product;
+  private originalProduct!: Product | null;
 
   get product(): Product {
     return this.currentProduct;
@@ -148,7 +148,15 @@ export class ProductEditComponent implements OnInit {
       this.messageService.addMessage(message);
     }
 
+    this.reset();
+
     // Navigate back to the product list
     this.router.navigate(['/products']);
+  }
+
+  reset(): void {
+    // this.dataIsValid = null;
+    // this.currentProduct = null;
+    this.originalProduct = null;
   }
 }
