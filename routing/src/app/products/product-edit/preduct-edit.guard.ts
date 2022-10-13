@@ -11,7 +11,7 @@ import { ProductEditComponent } from './product-edit.component';
 @Injectable({
   providedIn: 'root',
 })
-export class PreductEditGuard implements CanDeactivate<ProductEditComponent> {
+export class ProductEditGuard implements CanDeactivate<ProductEditComponent> {
   canDeactivate(
     component: ProductEditComponent,
     currentRoute: ActivatedRouteSnapshot,
