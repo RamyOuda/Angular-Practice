@@ -4,8 +4,20 @@
   </div>
 
   <div class="card-body" *ngIf="product">
-    <a routerLink="info"> Basic Information </a>
-    <a routerLink="tags"> Search Tags </a>
+    <a
+      routerLink="info"
+      routerLinkActive="active"
+      [ngClass]="{ 'fa fa-exclamation': !isValid('info') }"
+    >
+      Basic Information
+    </a>
+    <a
+      routerLink="tags"
+      routerLinkActive="active"
+      [ngClass]="{ 'fa fa-exclamation': !isValid('tags') }"
+    >
+      Search Tags
+    </a>
   </div>
 
   <router-outlet></router-outlet>
