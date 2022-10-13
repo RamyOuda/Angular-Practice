@@ -3,7 +3,7 @@
     {{ pageTitle }}
   </div>
 
-  <div class="card-body" *ngIf="product">
+  <div class="card-body wizard" *ngIf="product">
     <a
       routerLink="info"
       routerLinkActive="active"
@@ -23,7 +23,7 @@
   <router-outlet></router-outlet>
 
   <div class="row mb-2">
-    <div class="col-md-4">
+    <div class="col-md-4 buttons">
       <button
         class="btn btn-primary mr-3"
         style="width: 80px"
