@@ -8,11 +8,14 @@ import { PageNotFoundComponent } from './page-not-found.component';
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', component: PageNotFoundComponent },
-    ]),
+    RouterModule.forRoot(
+      [
+        { path: 'welcome', component: WelcomeComponent },
+        { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+        { path: '**', component: PageNotFoundComponent },
+      ],
+      { enableTracing: true }
+    ),
   ],
   exports: [RouterModule],
 })
