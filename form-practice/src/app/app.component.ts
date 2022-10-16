@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       address: new FormControl(),
+      checkbox: new FormControl(true),
     });
   }
 }
