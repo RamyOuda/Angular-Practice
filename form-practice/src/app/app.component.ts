@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder) {}
+
   practiceForm!: FormGroup;
 
   ngOnInit() {
-    this.practiceForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      address: new FormControl(),
-      checkbox: new FormControl(true),
+    this.practiceForm = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      address: '',
+      checkbox: true,
     });
   }
 
