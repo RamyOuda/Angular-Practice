@@ -17,4 +17,12 @@ export class AppComponent implements OnInit {
       checkbox: new FormControl(true),
     });
   }
+
+  populateTestData(): void {
+    this.practiceForm.patchValue({
+      firstName: 'Ramy',
+      lastName: 'Ouda',
+      checkbox: false,
+    });
+  }
 }
