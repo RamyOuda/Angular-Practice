@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -7,7 +8,8 @@
   background-color: #48b6ff;
 }
 
-form {
+form,
+.output-wrap {
   width: 450px;
   background-color: white;
   padding: 30px 40px;
@@ -17,4 +19,8 @@ form {
 
 .btn {
   margin-right: 20px;
+}
+
+.output-wrap {
+  margin-top: 50px;
 }
