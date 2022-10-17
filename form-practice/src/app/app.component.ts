@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.practiceForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       address: '',
       checkbox: true,
     });
