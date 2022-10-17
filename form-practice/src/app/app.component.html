@@ -39,7 +39,9 @@
       />
       <label class="form-check-label" for="formCheckbox">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="submit()">
+      Submit
+    </button>
     <button
       type="button"
       class="btn btn-outline-secondary"
@@ -48,4 +50,9 @@
       Data
     </button>
   </form>
+
+  <section class="output-wrap" *ngIf="formValues">
+    <p><b>Output: </b></p>
+    <span class="output">{{ formValues | json }}</span>
+  </section>
 </main>
