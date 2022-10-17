@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
 
   practiceForm!: FormGroup;
 
+  formValues: any;
+
   ngOnInit() {
     this.practiceForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -26,5 +28,14 @@ export class AppComponent implements OnInit {
       lastName: 'Ouda',
       checkbox: false,
     });
+  }
+
+  submit(): void {
+    this.formValues = {
+      'First Name': this.practiceForm.get('firstName')?.value,
+      'Last Name': this.practiceForm.get('lastName')?.value,
+      Address: this.practiceForm.get('address')?.value,
+      Checkbox: this.practiceForm.get('checkbox')?.value,
+    };
   }
 }
